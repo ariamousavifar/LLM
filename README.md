@@ -25,29 +25,20 @@ This project requires Python 3.8+ and PyTorch. Install the required dependencies
 pip install -r requirements.txt
 ```
 
-## Project Structure
-
-- **`models/`**: Contains the implementation of the transformer-based language model.
-- **`utils.py`**: Utility functions for data processing, training, and evaluation.
-- **`train.py`**: Script for training the model.
-- **`generate.py`**: Script for generating text using the trained model.
-- **`dataset/`**: Directory to place your training datasets.
-- **`saved_models/`**: Directory to save trained models.
-
 ## Usage
 
 ### Training the Model
 
-1. Prepare your dataset as a text file (e.g., `dataset/train.txt`).
+1. Prepare your dataset as a text file (e.g., `Dataset.txt`).
 2. Set the hyperparameters in the `hyperparameters` dictionary.
 3. Start training:
 
    ```bash
-   python train.py --dataset dataset/train.txt --encoding normal --wandb_log False
+   m = train_save(dataset_name="Dataset.txt", encoding="normal", parameters=hyperparameters, wandb_log=False)
    ```
 
    Key arguments:
-    - `--dataset`: Path to the training dataset.
+    - `--dataset_name`: Path to the training dataset.
     - `--encoding`: Character encoding mode (`normal` or custom).
     - `--wandb_log`: Enable or disable logging with WandB.
 
@@ -67,10 +58,9 @@ Key arguments:
 
 ### Saving and Loading Models
 
-Save a trained model automatically using `train_save()` or manually:
+Save a trained model automatically using `train_save()`.
 
 ```python
-from utils import save_model
 
 save_model(model, encoding, hyperparameters)
 ```
@@ -78,8 +68,6 @@ save_model(model, encoding, hyperparameters)
 Load a saved model:
 
 ```python
-from utils import load_model
-
 model, params = load_model("saved_models/model0.pth")
 ```
 
